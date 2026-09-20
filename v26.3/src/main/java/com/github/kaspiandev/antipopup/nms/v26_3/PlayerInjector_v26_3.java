@@ -40,10 +40,8 @@ public class PlayerInjector_v26_3 implements PacketInjector {
             @Override
             public void write(ChannelHandlerContext ctx, Object packet, ChannelPromise promise) throws Exception {
                 if (packet instanceof ClientboundPlayerChatPacket chatPacket) {
-                    Component content = chatPacket.unsignedContent();
-                    if (content == null) {
-                        content = Component.literal(chatPacket.body().content());
-                    }
+                    Component content = chatPacket.unsignedContent()
+                            .orElseGet(() -> Component.literal(chatPacket.body().content()));
                     ChatType.Bound chatType = chatPacket.chatType();
 
                     ((CraftPlayer) player).getHandle().connection.send(
