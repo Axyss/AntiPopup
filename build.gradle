@@ -45,6 +45,10 @@ allprojects {
             name = "codemc"
             url = "https://repo.codemc.io/repository/maven-snapshots/"
         }
+        maven {
+            name = "papermc"
+            url = "https://repo.papermc.io/repository/maven-public/"
+        }
     }
 
 }
